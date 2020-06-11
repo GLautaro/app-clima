@@ -6,8 +6,8 @@ const WeatherLocation = () => {
     //return de la estructura del componente
     return(
     <div>
-        <Location city='Alta Gracia'/>
-        <WeatherData temperature='15°C'/>
+        <Location city='Córdoba'/>
+        <WeatherData/>
     </div>
     );
 }

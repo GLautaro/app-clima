@@ -1,9 +1,12 @@
 import React from 'react';
+import WeatherTemperature from './WeatherTemperature';
+import WeatherExtraInfo from './WeatherExtraInfo';
 
-const WeatherData = (props) => {
+const WeatherData = () => {
     return(
         <div>
-            {props.temperature}
+            <WeatherTemperature temperature={20} weatherState={"fog"}/>
+            <WeatherExtraInfo humidity={70} wind={"5 m/s"}/>
         </div>
     );
 };
