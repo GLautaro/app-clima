@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
@@ -18,35 +18,48 @@ const cities = [
 ]
 
 
-function App() {
+class App extends Component {
 
-  const handleSelectedLocation = city => {
-    console.log(`handleSelectedLocation ${city}`)
+  constructor() {
+    super();
+    this.state = {
+      city: null,
+    }
   }
 
-  return (
-    <Grid>
-      <Row>
-        <AppBar position='sticky'>
-          <Toolbar>
-            <Typography variant='h6'>Aplicación del Clima</Typography>
-          </Toolbar>
-        </AppBar>
-      </Row>
-      <Row>
-        <Col xs={12} md={6}>
-          <LocationList cities={cities} onSelectedLocation={handleSelectedLocation}/>
-        </Col>
-        <Col xs={12} md={6}>
-          <Paper elevation={4}>
-            <div className="details">
-              <ForecastExtended city={"Cordoba"}/>
-            </div>
-          </Paper>
-        </Col>
-      </Row>
-    </Grid>
-  );
+  handleSelectedLocation = city => {
+    this.setState({ city });
+    console.log(`handleSelectedLocation ${city}`);
+  };
+
+  render() {
+    const {city} = this.state;
+    return (
+      <Grid>
+        <Row>
+          <AppBar position='sticky'>
+            <Toolbar>
+              <Typography variant='h6' color='inherit'>Weather App</Typography>
+            </Toolbar>
+          </AppBar>
+        </Row>
+        <Row>
+          <Col xs={12} md={6}>
+            <LocationList 
+              cities={cities} 
+              onSelectedLocation={this.handleSelectedLocation}/>
+          </Col>
+          <Col xs={12} md={6}>
+            <Paper elevation={4}>
+               <div className="details">
+                 { city && <ForecastExtended city={city}/> }
+              </div>
+            </Paper>
+          </Col>
+        </Row>
+      </Grid>
+    );
+  };
 }
 
 export default App;

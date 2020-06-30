@@ -7,3 +7,10 @@
     }
 
 }
+
+.forecast-title {
+    font-family: 'Roboto', 'sans-serif';
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
