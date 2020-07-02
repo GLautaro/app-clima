@@ -2,25 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ForecastItem from './ForecastItem';
 import transformForecast from '../services/transformForecast';
+import getUrlForecastCity from '../services/getUrlForecastCity';
 import './styles.css';
 
-/*
-const days = [
-    "Lunes",
-    "Martes",
-    "Miercoles",
-    "Jueves",
-    "Viernes",
-];
-
-const data = {
-    temperature: 10,
-    humidity: 10,
-    weatherState: 'sun',
-    wind: '1 m/s',
-}*/
-const api_key = ""; //Copiar aca su api key
-const url_base = "http://api.openweathermap.org/data/2.5/forecast";
 
 class ForecastExtended extends Component {
 
@@ -32,8 +16,20 @@ class ForecastExtended extends Component {
     }
 
     componentDidMount() {
+        this.updateCity(this.props.city);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.city !== this.props.city) {
+            this.setState({ forecastData: null })
+            this.updateCity(nextProps.city);
+        }
+    }
+
+
+    updateCity = city => {
         //fetch o axios
-        const url = `${url_base}?q=${this.props.city}&appid=${api_key}`;
+        const url = getUrlForecastCity(city);
         fetch(url).then(
             data => (data.json())
         ).then(
