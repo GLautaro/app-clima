@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { store } from './store';
 import './App.css';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
@@ -7,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
+import { setCity } from './actions';
 
 
 const cities = [
@@ -30,6 +32,8 @@ class App extends Component {
   handleSelectedLocation = city => {
     this.setState({ city });
     console.log(`handleSelectedLocation ${city}`);
+
+    store.dispatch(setCity(city));
   };
 
   render() {
