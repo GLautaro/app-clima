@@ -13,8 +13,7 @@ import transformWeather from '../../services/transformWeather';
 import getUrlWeatherCity from '../../services/getUrlWeatherCity';
 
 //Constantes
-import { CLOUD, SUN, CLOUDY } from '../../constants/weathers';
-import { api_weather } from '../../constants/api_url';
+
 
 //Librerias externas
 import PropTypes from 'prop-types';
